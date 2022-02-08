@@ -2,6 +2,9 @@
 #include "../graphics/texture_manager.h"
 #include "../physics/vector2d.h"
 #include "../physics/transoform.h"
+#include "../characters/warrior.h"
+
+Warrior* player = nullptr;
 
 bool Engine::Init()
 {
@@ -41,7 +44,8 @@ bool Engine::Init()
 		return false;
 	}
 	
-	TextureManager::GetInstance()->Load("tree", "assets/tree.png");
+	TextureManager::GetInstance()->Load("player", "assets/idle6.png");
+	player = new Warrior(new Properties{"player", 0, 0, 175, 125});
 	Transform tf;
 	tf.Log();
 
@@ -49,19 +53,9 @@ bool Engine::Init()
 	return m_IsRunning;
 }
 
-bool Engine::Clean()
-{
-	TextureManager::GetInstance()->Clean();
-	SDL_DestroyRenderer(m_Renderer);
-	SDL_DestroyWindow(m_Window);
-	IMG_Quit();
-	SDL_Quit();
-	return true;
-}
-
 void Engine::Update()
 {
-	//SDL_Log("UpdateLog");
+	player->Update(0);
 }
 
 void Engine::Render()
@@ -69,7 +63,7 @@ void Engine::Render()
 	SDL_SetRenderDrawColor(m_Renderer, 124, 210, 254, 255);
 	SDL_RenderClear(m_Renderer);
 
-	TextureManager::GetInstance()->Draw("tree", 100, 100, 591, 651, SDL_FLIP_NONE);
+	player->Draw();
 	SDL_RenderPresent(m_Renderer);
 }
 
@@ -85,6 +79,15 @@ void Engine::Events()
 	}
 }
 
+bool Engine::Clean()
+{
+	TextureManager::GetInstance()->Clean();
+	SDL_DestroyRenderer(m_Renderer);
+	SDL_DestroyWindow(m_Window);
+	IMG_Quit();
+	SDL_Quit();
+	return true;
+}
 
 void Engine::Quit()
 {
