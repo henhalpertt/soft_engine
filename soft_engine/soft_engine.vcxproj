@@ -146,17 +146,22 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="src\animation\animation.cpp" />
     <ClCompile Include="src\characters\warrior.cpp" />
     <ClCompile Include="src\core\engine.cpp" />
     <ClCompile Include="src\graphics\texture_manager.cpp" />
+    <ClCompile Include="src\inputs\input.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\animation\animation.h" />
     <ClInclude Include="src\characters\character.h" />
     <ClInclude Include="src\characters\warrior.h" />
     <ClInclude Include="src\core\engine.h" />
     <ClInclude Include="src\graphics\texture_manager.h" />
+    <ClInclude Include="src\inputs\input.h" />
     <ClInclude Include="src\object\game_object.h" />
     <ClInclude Include="src\object\iobject.h" />
+    <ClInclude Include="src\physics\rigid_body.h" />
     <ClInclude Include="src\physics\transoform.h" />
     <ClInclude Include="src\physics\vector2d.h" />
   </ItemGroup>

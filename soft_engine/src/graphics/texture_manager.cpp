@@ -35,7 +35,6 @@ void TextureManager::Draw(std::string id, int x, int y, int width, int height, S
 		0,
 		nullptr,
 		flip);
-
 }
 
 void TextureManager::DrawFrame(std::string id, int x, int y, int w, int h, int row, int frame, SDL_RendererFlip flip)
