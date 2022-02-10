@@ -1,7 +1,8 @@
 #include "engine.h"
 #include "../graphics/texture_manager.h"
-#include "../physics/vector2d.h"
-#include "../physics/transoform.h"
+//#include "../physics/vector2d.h"
+//#include "../physics/transoform.h"
+#include "../inputs/input.h"
 #include "../characters/warrior.h"
 
 Warrior* player = nullptr;
@@ -55,6 +56,10 @@ bool Engine::Init()
 
 void Engine::Update()
 {
+	if (Input::GetInstance()->GetKeyDown(SDL_SCANCODE_W))
+	{
+		SDL_Log("Key W Was pushed!");
+	}
 	player->Update(0);
 }
 
@@ -69,14 +74,8 @@ void Engine::Render()
 
 void Engine::Events()
 {
-	SDL_Event event;
-	SDL_PollEvent(&event);
-	switch (event.type)
-	{
-		case SDL_QUIT:
-			Quit();
-			break;
-	}
+	Input* in = Input::GetInstance();
+	in->Listen();
 }
 
 bool Engine::Clean()
