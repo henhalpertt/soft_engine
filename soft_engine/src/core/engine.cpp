@@ -45,8 +45,12 @@ bool Engine::Init()
 		return false;
 	}
 	
-	TextureManager::GetInstance()->Load("player", "assets/idle6.png");
-	player = new Warrior(new Properties{"player", 0, 0, 175, 125});
+	//idle stance
+	TextureManager::GetInstance()->Load("player", "assets/knight_idle.png");
+	// walking 
+	TextureManager::GetInstance()->Load("player_run", "assets/knight_run.png");
+
+	player = new Warrior(new Properties{"player", 300, 300, 64, 64});
 	Transform tf;
 	tf.Log();
 
@@ -56,10 +60,6 @@ bool Engine::Init()
 
 void Engine::Update()
 {
-	if (Input::GetInstance()->GetKeyDown(SDL_SCANCODE_W))
-	{
-		SDL_Log("Key W Was pushed!");
-	}
 	player->Update(0);
 }
 
@@ -74,7 +74,7 @@ void Engine::Render()
 
 void Engine::Events()
 {
-	Input* in = Input::GetInstance();
+	Input* in = Input::GetInstance(); 
 	in->Listen();
 }
 
